@@ -1,0 +1,107 @@
+<html>
+<head>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<title>DevTool Panel By Mayonaise</title><body><div class="link-generate">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Arial+Condensed&amp;display=swap" rel="stylesheet">
+    <script language="javascript">
+        window.onload = setup;
+
+        function setup(){
+            document.getElementById("button").addEventListener("click", go);
+            document.getElementById("output").addEventListener("click", copy);
+        }
+        
+        function setStatus(status, error = false) {
+            var helpText = document.getElementById("help-text");
+            
+            helpText.innerText = status;
+            
+            if (error) {
+                helpText.style.color = "#c088ff";
+            } else {
+                helpText.style.color = "#c088ff";
+            }
+        }
+          
+        function go(){
+            var linkId = document.getElementById("input").value;
+            var idExtractor = /\/d\/(.+?)(?:\/|#|\?|$)/;
+            var result = idExtractor.exec(linkId);
+            
+            var outputBox = document.getElementById("output");
+            
+            
+            if (!result) {
+                outputBox.value = "";
+                setStatus("Error: Invalid URL", true);
+                outputBox.disabled = true;
+                return;
+            }
+            
+            var finalLink = "https://drive.google.com/uc?export=download&id=" + result[1];
+            outputBox.disabled = false;
+            outputBox.value = finalLink;
+            setStatus("Success! Click the output link to copy it to your clipboard");
+        }
+        
+        function copy() {
+            if (this.disabled) {
+                return;
+            }
+            
+            this.select();
+            var copied = document.execCommand("copy");
+            
+            if (copied) {
+                setStatus("Link copied to clipboard!");
+            } else {
+                setStatus("Couldn't copy link to clipboard. Please copy it manually.", true);
+            }
+        }
+    </script>
+
+    <div id="navbar">
+  <a class="active" href="index.html">Dashboard</a>
+  <a href="generator.html">Gdrive Generator</a>
+  <a href="https://sites.google.com/view/mayonaise/browse">Website</a>
+  <a href="settings.html">Settings</a>
+</div>
+
+<h1 class="bigblue">DevTool Panel</h1>
+<h1>Dashboard</h1>
+
+<a href="generator.html"><button class="button2">Gdrive Direct Link Generator</button></a>
+<a href="softwares.html"><button class="button2">Coding Softwares</button></a>
+<a href="freewebhost.html"><button class="button2">Free Website Hosting</button></a>
+<a href="filehosts.html"><button class="button2">Free File Hosting</button></a>
+<br><br>
+
+
+<p>Video Player Sites</p>
+<a href="https://youtube.com/"><button class="button2">YouTube</button></a>
+
+<p>Community</p>
+<a href="https://discord.com/"><button class="button2">Discord</button></a>
+
+<p>Shorten URLs</p>
+<a href="https://tinyurl.com/"><button class="button2">Tinyurl</button></a>
+<a href="https://bit.ly/"><button class="button2">Bit.ly</button></a>
+<a href="https://rebrandly.com/"><button class="button2">rebrand.ly</button></a>
+
+<p>AUDIO</p>
+
+<a href="https://www.fxsound.com/"><button class="button2">FXSound - Audio Eq For PC</button></a>
+<a href="https://cdn.discordapp.com/attachments/1388270982036459650/1388271126098088108/VoiceMod.zip?ex=686ce5fd&is=686b947d&hm=671905e5a0304c3e7c268d4931fee63bfbec0a9b1d813616c59daf57e6d1651e&"><button class="button2">VoiceMod - Clear Microphone</button></a>
+
+<p>IMPORTED LIBRARY</p>
+
+<a href="app/RyzenCheats/V.1.11.1/index.html"><button class="button2">RyzenCheats For FiveM (V1.11.1)</button></a>
+<a href="generator.html"><button class="button2">Gdrive Generator (V1.2.1)</button></a>
+
+</body>

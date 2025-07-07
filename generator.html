@@ -1,0 +1,87 @@
+<html>
+<head>
+  <link rel="icon" type="image/x-icon" href="assets/favicon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<title>DevTool Panel By Mayonaise</title><body><div class="link-generate">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Arial+Condensed&amp;display=swap" rel="stylesheet">
+    <script language="javascript">
+        window.onload = setup;
+
+        function setup(){
+            document.getElementById("button").addEventListener("click", go);
+            document.getElementById("output").addEventListener("click", copy);
+        }
+        
+        function setStatus(status, error = false) {
+            var helpText = document.getElementById("help-text");
+            
+            helpText.innerText = status;
+            
+            if (error) {
+                helpText.style.color = "#c088ff";
+            } else {
+                helpText.style.color = "#c088ff";
+            }
+        }
+          
+        function go(){
+            var linkId = document.getElementById("input").value;
+            var idExtractor = /\/d\/(.+?)(?:\/|#|\?|$)/;
+            var result = idExtractor.exec(linkId);
+            
+            var outputBox = document.getElementById("output");
+            
+            
+            if (!result) {
+                outputBox.value = "";
+                setStatus("Error: Invalid URL", true);
+                outputBox.disabled = true;
+                return;
+            }
+            
+            var finalLink = "https://drive.google.com/uc?export=download&id=" + result[1];
+            outputBox.disabled = false;
+            outputBox.value = finalLink;
+            setStatus("Success! Click the output link to copy it to your clipboard");
+        }
+        
+        function copy() {
+            if (this.disabled) {
+                return;
+            }
+            
+            this.select();
+            var copied = document.execCommand("copy");
+            
+            if (copied) {
+                setStatus("Link copied to clipboard!");
+            } else {
+                setStatus("Couldn't copy link to clipboard. Please copy it manually.", true);
+            }
+        }
+    </script>
+
+    <div id="navbar">
+  <a href="index.html">Dashboard</a>
+  <a class="active" href="generator.html">Gdrive Generator</a>
+  <a href="https://sites.google.com/view/mayonaise/browse">Website</a>
+  <a href="settings.html">Settings</a>
+</div>
+
+<h1 class="bigblue">Gdrive Generator</h1>
+
+    <div class="title">Enter URL:&nbsp;<span class="sub"></span></div>
+    <input style="background-color:#1e1725;color:#c088ff;" id="input" type="text">
+	<button id="button">GENERATE DOWNLOAD</button>
+    <div class="title">Download link:</div>
+    <input style="background-color:#1e1725;color:white;" id="output" type="text" readonly="" disabled="">
+    <div id="help-text"></div>
+
+<p>To create a link firstly go to your google drive file &gt; Share &gt; Anyone with the link &gt; Copy Link &gt; Paste in sharing Url &gt; Create Link</p>
+<hr></div>
+</body>
