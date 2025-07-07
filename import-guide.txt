@@ -1,0 +1,4 @@
+Within the DevTool Panel app (Make sure you have it downloaded) in the Directory make a new folder called app.
+it should be above or below your assets folder.
+
+Paste the import folder inside the app folder. Make sure its the correct version.
